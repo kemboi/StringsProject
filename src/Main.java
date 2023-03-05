@@ -1,5 +1,21 @@
 public class Main {
     public static void main(String[] args) {
+        int [] arr = {1,4};
+        long count =0;
+        for (int i = 0; i<arr.length; i++){
+            for (int j=i+1; j<arr.length; j++){
+                System.out.println(arr[i]+" "+arr[j]+"END");
+                long btw = arr[i] ^ arr[j];
+                System.out.println(btw);
+                long an = arr[i] & arr[j];
+                System.out.println(an);
+                if (btw > an) count++;
+            }
+        }
+        System.out.println(count);
+
+
+
         System.out.println("Determining whether " +
                 "a string has unique characters without using " +
                 "extra data structures");
@@ -11,6 +27,36 @@ public class Main {
         String str2 = "cot ";
         System.out.println(permutation(str1,str2));
 
+        System.out.println("String compression algorithm");
+        String strToComp = "aabcccccaaa";
+        System.out.println(compressString(strToComp));
+
+        System.out.println("abc");
+        String cde = "cde";
+        System.out.println("abc" + cde);
+        String c = "abc".substring(2,3);
+        String d = cde.substring(1, 2);
+        int res = "cdecde".indexOf("cde");
+        System.out.println(res);
+        String str3 = new String("I AM A String & with numbers 1 and spaces ! .");
+        str3=str3.replaceAll("[^a-zA-Z]"," ");
+        System.out.println(str3);
+
+    }
+
+    private static String compressString(String str) {
+        StringBuilder comp = new StringBuilder();
+        int countChar = 0;
+        for (int i = 0; i < str.length(); i++){
+            countChar++;
+            if(i + 1 >= str.length() || str.charAt(i) != str.charAt(i+1)){
+                comp.append(str.charAt(i));
+                comp.append(countChar);
+                countChar = 0;
+            }
+
+        }
+        return str.length() < comp.length() ? str: comp.toString();
     }
 
     private static boolean permutation(String str1, String str2) {
@@ -45,4 +91,6 @@ public class Main {
         }
         return true;
     }
+
+
 }

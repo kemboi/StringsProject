@@ -10,7 +10,12 @@ public class BubbleSort {
 
         int [] arr = new int[]{1, 6, 2, 3, 0, 6, 3, 100, 11};
         boolean swapped = false;
+        System.out.println("Bubble Sort Solution : ");
         System.out.println(Arrays.toString(BubbleSortHelper(arr, swapped)));
+        // using selection sort
+        SelectionSort select = new SelectionSort();
+        System.out.println("Selection Sort Solution : ");
+        System.out.println(Arrays.toString(select.selectionsort(arr)));
     }
     private static int[] BubbleSortHelper(int[] arr, boolean swapped) {
         for (int i = 0; i < arr.length; i++){
@@ -28,5 +33,39 @@ public class BubbleSort {
             }
         }
         return arr;
+    }
+
+}
+class SelectionSort{
+    /*Keep finding the maximum or minimum element in the array and place the element
+    * in its correct index
+    * The running time of this algorithm is same as that of Bubble Sort*/
+    public int[] selectionsort(int[] arr){
+            for (int i = 0; i < arr.length; i++){
+                // find the maximum item in the remaining array and swap with the correct index.
+                int last = arr.length - i - 1;
+                int maxIndex = getMaxIndexEl(arr, 0, last);
+                swap(arr, maxIndex, last);
+            }
+        return arr;
+    }
+// function to swap between the maximum index element and last index
+    private void swap(int[] arr, int maxindex, int last) {
+
+                int temp = arr[maxindex];
+                arr[maxindex] = arr[last];
+                arr[last] = temp;
+
+        }
+// function to return the index with maximum element
+    private int getMaxIndexEl(int[] arr, int start, int last) {
+        int maxIndex = start;
+        for (int i = start; i <= last; i++){
+            if (arr[maxIndex] < arr[i])
+            {
+               maxIndex = i;
+            }
+        }
+        return maxIndex;
     }
 }
